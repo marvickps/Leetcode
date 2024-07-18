@@ -4,6 +4,16 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        nums.sort()
-        return nums[0]
+        n=len(nums)
+
+        l=0
+        r=n-1
+        while nums[l]>nums[r]:
+            l+=1
+        return nums[l]
+            
+
+            
+        
+       
         
