@@ -5,18 +5,24 @@ class Solution(object):
         :rtype: int
         """
 
-        max_score = 0
-        
-        for i in range(1, len(s)):
-            countleft = 0
-            countRight = 0
-            for j in s[:i]:
-                if j == '0':
-                    countleft += 1
-            for j in s[i:]:
-                if j == '1':
-                    countRight += 1
-            left = countleft
-            right = countRight
-            max_score = max(max_score, left + right)
-        return max_score
+ 
+        score = 0
+        left_0 = {'0': 0} 
+        countRight = 0
+
+        for j in s:
+            if j == '1':
+                countRight += 1
+
+        right_1 = countRight
+
+        for i in range(len(s) - 1):
+            # 0-1, 00-2,0010-3 00100-4
+            if s[i] == '0':
+                left_0['0'] += 1
+            else:
+                #0100111-4, 100111-4, 00111-3,0111-3,
+                right_1 = right_1 - 1
+            score = max(score, left_0['0'] + right_1)
+
+        return score
