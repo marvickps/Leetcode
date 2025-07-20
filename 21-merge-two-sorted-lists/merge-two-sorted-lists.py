@@ -10,26 +10,29 @@ class Solution(object):
         :type list2: Optional[ListNode]
         :rtype: Optional[ListNode]
         """
-        temp = []
-        temp2= []
-        temp3= ListNode()
-        tail = temp3
+
+        temp = ListNode()
+        final = temp
+
+
+        while list1 and list2:
+            if list1.val < list2.val:
+                final.next = list1
+                list1 = list1.next
+
+            else:
+                final.next  = list2
+                list2 = list2.next
+            final = final.next
+
+        if list1:
+            final.next = list1
+        if list2:
+            final.next =list2
+
+
+        return temp.next
+
+
 
         
-        while list1:
-            temp.append(list1.val)
-            list1 = list1.next
-
-        while list2:
-            temp2.append(list2.val)
-            list2 = list2.next
-
-        listFinal = sorted(temp+temp2)
-
-        print(listFinal)
-
-        for num in listFinal:
-            tail.next = ListNode(num)
-            tail = tail.next
-        
-        return temp3.next
