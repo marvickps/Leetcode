@@ -9,10 +9,7 @@ class Solution(object):
         l=0
 
 
-        if len(word1)>len(word2):
-            l = len(word1)
-        else: 
-            l = len(word2)
+        l = max(len(word1), len(word2))
             
         for i in range(0,l):
             if i < len(word1):
