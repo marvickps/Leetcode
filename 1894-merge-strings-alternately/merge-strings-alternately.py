@@ -5,17 +5,14 @@ class Solution(object):
         :type word2: str
         :rtype: str
         """
-        r = ""
-        l=0
-
-
+        result = []
         l = max(len(word1), len(word2))
-            
-        for i in range(0,l):
+
+        for i in range(l):
             if i < len(word1):
-                r=r+word1[i]
+                result.append(word1[i])
             if i < len(word2):
-                r=r+word2[i]
+                result.append(word2[i])
+
+        return "".join(result)
             
-        return r
-        
