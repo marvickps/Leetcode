@@ -16,18 +16,19 @@ class Solution(object):
         #         i+=1
             
         # return " ".join(returnlist)
-        returnlist = []
-        word = ""
+        return " ".join(s.split()[::-1])
+        # returnlist = []
+        # word = ""
 
-        for i in s:
-            if i == " ":
-                if word != "":
-                    returnlist.append(word)
-                    word = ""  
-            else:
-                word=word+i
-        if word != "":
-            returnlist.append(word)
+        # for i in s:
+        #     if i == " ":
+        #         if word != "":
+        #             returnlist.append(word)
+        #             word = ""  
+        #     else:
+        #         word=word+i
+        # if word != "":
+        #     returnlist.append(word)
         
-        returnlist.reverse()
-        return " ".join(returnlist)
+        # returnlist.reverse()
+        # return " ".join(returnlist)
