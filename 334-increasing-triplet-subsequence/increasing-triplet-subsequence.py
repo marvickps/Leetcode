@@ -4,7 +4,7 @@ class Solution(object):
         :type nums: List[int]
         :rtype: bool
         """
-        s = float('inf')
+        s = nums[0]
         l = float('inf')
         for i in range(len(nums)):
             if s >= nums[i]:
