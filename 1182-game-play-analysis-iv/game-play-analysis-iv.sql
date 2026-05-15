@@ -1,5 +1,9 @@
 # Write your MySQL query statement below
--- select a1.player_id, a1.device_id, a1.event_date, DATEDIFF(a1.event_date, a2.event_date) as dif
+-- select
+-- ROUND(
+--     COUNT(DISTINCT a1.player_id)
+--     / (SELECT COUNT(DISTINCT player_id) from activity)
+--     ,2) as fraction
 -- from Activity a1 left join activity a2 on a1.player_id = a2.player_id
 -- where DATEDIFF(a2.event_date, a1.event_date ) = 1
 -- order by a1.event_date asc
