@@ -8,11 +8,11 @@ class Solution:
                 l +=1
             while l<r and not s[r].isalnum():
                 r -=1
-            if s[l] == s[r]:
-                l +=1
-                r -=1
-            else:
+            if s[l] != s[r]:
                 return False
+            l +=1
+            r -=1
+                
         return True
             
             
