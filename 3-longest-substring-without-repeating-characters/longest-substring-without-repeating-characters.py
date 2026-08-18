@@ -7,7 +7,7 @@ class Solution:
         temp = 0
         while r<le:
             if s[r] in mapp:
-                x = sum(mapp.values())
+                x = len(mapp)
                 mapp = {}
                 r=l
                 l+=1
@@ -17,6 +17,6 @@ class Solution:
             else:
                 mapp[s[r]] = 1
             r+=1
-        if sum(mapp.values()) > temp:
-            return sum(mapp.values())
+        if len(mapp) > temp:
+            return len(mapp)
         return temp
