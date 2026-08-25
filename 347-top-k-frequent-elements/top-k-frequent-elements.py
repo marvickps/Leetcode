@@ -9,5 +9,4 @@ class Solution:
             else:
                 count[nums[i]] = 1
         
-        result = sorted(count, key=count.get, reverse=True)[:k]
-        return result
+        return sorted(count, key=count.get)[-k:]
