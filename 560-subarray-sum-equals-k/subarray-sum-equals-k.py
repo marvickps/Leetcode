@@ -1,24 +1,18 @@
-class Solution(object):
-    def subarraySum(self, nums, k):
-        """
-        :type nums: List[int]
-        :type k: int
-        :rtype: int
-        """
-        listSum={0:1}
-        count=0
-        currentSum=0
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        #1,1,1 k=2
+        res = 0
+        curSum = 0
+        prefixSums = {}
+        for num in nums:
+            curSum += num
 
-        for i in range(len(nums)):
-            currentSum += nums[i]
+            if curSum == k:
+                res += 1
 
-            if currentSum - k in listSum:
-                count += listSum[currentSum - k]
+            if curSum - k in prefixSums:
+                res += prefixSums[curSum - k]
 
-            if currentSum in listSum:
-                listSum[currentSum] += 1
-            else:
-                listSum[currentSum] = 1
+            prefixSums[curSum] = prefixSums.get(curSum, 0) + 1
 
-        return count
-        
+        return res
