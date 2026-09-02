@@ -6,12 +6,12 @@
 
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
-        hmap = {}
+        hset =set()
         while head:
-            if head in hmap:
+            if head in hset:
                 return True
             else:
-                hmap[head] = head.val
+                hset.add(head)
             
             head = head.next
         return False
