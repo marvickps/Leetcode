@@ -32,12 +32,12 @@ class Solution:
 
     def reverseIt(self, head: Optional[ListNode]):
         prev = None
-        curr = head
+        # curr = head
 
-        while curr:
-            nxt = curr.next
-            curr.next = prev
-            prev = curr
-            curr = nxt
+        while head:
+            nxt = head.next
+            head.next = prev
+            prev = head
+            head = nxt
 
         return prev
