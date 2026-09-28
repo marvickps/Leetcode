@@ -15,7 +15,8 @@ class Solution:
             level = []
             for i in range(l_size):
                 node = queue.popleft()
-                level.append(node.val)
+                if i == l_size -1:
+                    level.append(node.val)
                 if node.left:
                     queue.append(node.left)
                 if node.right:
