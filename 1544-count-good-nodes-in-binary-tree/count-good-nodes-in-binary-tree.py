@@ -10,21 +10,9 @@ class Solution:
         def dfs_count(node, maax): 
             if node is None:
                 return 0
-            count = 0
-            maax = max(maax, node.val)
-            if maax <= node.val:
-                count =1
-            # if node.val>= maax:
-            #     count = 1
-            
-
-
-            count += dfs_count(node.left, maax)
-            count += dfs_count(node.right, maax)
-
-            return count
-
+            if node.val < maax:
+                return dfs_count(node.left, maax)+dfs_count(node.right, maax)
+            else:
+                return 1 + dfs_count(node.left, node.val)+dfs_count(node.right, node.val)
         
-        return dfs_count(root, root.val)
-            
-        
+        return dfs_count(root,root.val)
