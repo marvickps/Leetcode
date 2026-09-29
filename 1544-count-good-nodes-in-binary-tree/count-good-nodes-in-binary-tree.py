@@ -11,11 +11,13 @@ class Solution:
             if node is None:
                 return 0
             count = 0
-            
-            if node.val>= maax:
-                count = 1
-            
             maax = max(maax, node.val)
+            if maax <= node.val:
+                count =1
+            # if node.val>= maax:
+            #     count = 1
+            
+
 
             count += dfs_count(node.left, maax)
             count += dfs_count(node.right, maax)
