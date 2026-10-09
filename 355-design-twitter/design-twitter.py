@@ -2,7 +2,7 @@ class Twitter:
 
     def __init__(self):
         self.count = 0
-        self.tweets = defaultdict(list) # [[2,33],[2,44]]
+        self.tweets = defaultdict(list) #{1: [[0, 5], [4, 9]], 2: [[1, 6]]}
         self.follows = defaultdict(set) #{2:(1,3,2,4) }
 
     def postTweet(self, userId: int, tweetId: int) -> None:
@@ -10,17 +10,45 @@ class Twitter:
         self.count += 1
 
     def getNewsFeed(self, userId: int) -> list[int]:
-        users = self.follows[userId] | {userId}
- 
-        candidates = []
+        users = []
+        users.append(userId)
+        for followeeId in self.follows[userId]:
+            if followeeId != userId:
+                users.append(followeeId)
+        
+        heap = []
         for u in users:
-            candidates.extend(self.tweets[u][-10:])
- 
-        candidates.sort(reverse=True)
+            user_tweets = self.tweets[u]
+        
+            if len(user_tweets)>0:
+                newest_index = len(user_tweets)-1
+                newest_tweet = user_tweets[newest_index]
+
+                tweet_time = newest_tweet[0]
+                tweet_id = newest_tweet[1]
+
+                heapq.heappush_max(heap, [tweet_time,tweet_id,u,newest_index])
+            
         feed = []
-        for count, tweetId in candidates[:10]:
-            feed.append(tweetId)
+        while len(heap)>0 and len(feed) < 10:
+            top = heapq.heappop_max(heap)
+            tweet_id = top[1]
+            user = top[2]
+            index = top[3]
+
+            feed.append(tweet_id)
+
+            if index>0:
+                older_index = index-1
+                older_tweet = self.tweets[user][older_index]
+
+                older_time = older_tweet[0]
+                older_id = older_tweet[1]
+
+                heapq.heappush_max(heap,[older_time,older_id,user,older_index])
         return feed
+
+
 
     def follow(self, followerId: int, followeeId: int) -> None:
         self.follows[followerId].add(followeeId)
