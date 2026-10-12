@@ -1,15 +1,21 @@
 class Solution:
     def permute(self, nums: list[int]) -> list[list[int]]:
-        num_per = math.factorial(len(nums))
-        arr = nums.copy()
-        seen = {tuple(arr)}
-        res = [arr.copy()]
+        #[1,2,3]-[1,3,2]
+        res = []
+        curr_path = []
 
-        while len(res) < num_per:
-            random.shuffle(arr)
-            t = tuple(arr)
-            if t not in seen:
-                seen.add(t)
-                res.append(arr.copy())
+        def backtrack(temp_list):
+            if len(temp_list) == 0:
+                res.append(curr_path.copy())
+                return
+            
+            #Explore
+            for i in range(len(temp_list)):
+                curr_path.append(temp_list[i])
+                backtrack(temp_list[:i]+temp_list[i+1:])
+                curr_path.pop()
 
+        backtrack(nums)
         return res
+
+
